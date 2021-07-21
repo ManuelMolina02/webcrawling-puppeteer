@@ -40,27 +40,27 @@ app.get('/arqTJAL', async (request, response) => {
   const dataListAL = await page.evaluate(() => {
 
     //Raspagem/ modelação/ tratamento de dados
+    const valorProcesso = Number(document.querySelector('#valorAcaoProcesso').innerText.replace(/\D/g, ""))
 
     const dadosProcesso = {
-      area: String(document.querySelector('#areaProcesso > span').innerText.toUpperCase()),
-      juiz: String(document.querySelector('#juizProcesso').innerText.toUpperCase()),
-      numeroProcessoUnico: String(document.querySelector('#numeroProcesso').innerText.toUpperCase()),
-      dataDistribuicao: String(document.querySelector('#dataHoraDistribuicaoProcesso').innerText.toUpperCase()),
-      orgaoJulgador: String(document.querySelector('#varaProcesso').innerText.toUpperCase()),
-      unidadeOrigem: String(document.querySelector('#foroProcesso').innerText.toUpperCase()),
-      classeProcessualNome: String(document.querySelector('#classeProcesso').innerText.toUpperCase()),
-      statusObservacao: String(document.querySelector('#labelSituacaoProcesso').innerText.toUpperCase()),
+      area: document.querySelector('#areaProcesso > span').innerText.toUpperCase(),
+      juiz: document.querySelector('#juizProcesso').innerText.toUpperCase(),
+      numeroProcessoUnico: document.querySelector('#numeroProcesso').innerText.toUpperCase(),
+      dataDistribuicao: document.querySelector('#dataHoraDistribuicaoProcesso').innerText.toUpperCase(),
+      orgaoJulgador: document.querySelector('#varaProcesso').innerText.toUpperCase(),
+      unidadeOrigem: document.querySelector('#foroProcesso').innerText.toUpperCase(),
+      classeProcessualNome: document.querySelector('#classeProcesso').innerText.toUpperCase(),
+      statusObservacao: document.querySelector('#labelSituacaoProcesso').innerText.toUpperCase(),
      
       moeda: String(document.querySelector('#valorAcaoProcesso').innerText.replace(/[0-9]?\,?\.?/g, "").trim()),
       valor: (Number(valorProcesso) / 100),
-      valorProcesso: Number(document.querySelector('#valorAcaoProcesso').innerText.replace(/\D/g, "")),
- 
+
       urlProcesso: window.location.href,
     }
     
     const partesProcesso = {
       nomeAutora: document.querySelectorAll('tbody > tr > td.nomeParteEAdvogado')[0].childNodes[0].textContent.trim(),
-      tipoAutora: String(document.querySelector('.mensagemExibindo').innerText.toUpperCase().trim()),
+      tipoAutora: document.querySelector('.mensagemExibindo').innerText.toUpperCase().trim(),
       nomeAdvogadoAutora: document.querySelectorAll('tbody > tr > td.nomeParteEAdvogado')[0].childNodes[4].textContent.trim(),
       tipoAdvogadoAutora: document.querySelectorAll('tbody > tr > td.nomeParteEAdvogado')[0].childNodes[3].textContent.trim(),
 
@@ -168,12 +168,12 @@ app.get('/arqTJPI', async (request, response) => {
     const secondArray = [...secondTable]
 
     const dadosProcesso = {
-      numeroProcessoUnico: String(primaryArray[0].innerText),
-      dataDistribuicao: String(primaryArray[1].innerText),
-      CNJClasseProcessual: String(primaryArray[2].innerText.replace(/\D/g, "")),
-      nomeClasseProcessual: String(primaryArray[2].innerText.replace(/\d?\(?\)?/g, "").trim()),
-      unidadeOrigem: String(primaryArray[4].innerText.toUpperCase()),
-      orgaoJulgador: String(primaryArray[6].innerText.toUpperCase()),
+      numeroProcessoUnico: primaryArray[0].innerText,
+      dataDistribuicao: primaryArray[1].innerText,
+      CNJClasseProcessual: primaryArray[2].innerText.replace(/\D/g, ""),
+      nomeClasseProcessual: primaryArray[2].innerText.replace(/\d?\(?\)?/g, "").trim(),
+      unidadeOrigem: primaryArray[4].innerText.toUpperCase(),
+      orgaoJulgador: primaryArray[6].innerText.toUpperCase(),
       urlProcesso: window.location.href,
 
     }
@@ -182,9 +182,7 @@ app.get('/arqTJPI', async (request, response) => {
       nomeParticipante: secondArray[0].textContent.slice(0, 27).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase(),
       cnpjParticipante: secondArray[0].textContent.replace(/\D/g, ''),
       tipoParticipante: secondArray[0].textContent.slice(56, 61),
-      poloParticipante: String(document.getElementById('j_id130:processoPartesPoloAtivoResumidoList:0:j_id313').childNodes[1].innerText.toUpperCase()),
-
-
+      poloParticipante: document.getElementById('j_id130:processoPartesPoloAtivoResumidoList:0:j_id313').childNodes[1].innerText.toUpperCase(),
     }
 
 
@@ -197,20 +195,6 @@ app.get('/arqTJPI', async (request, response) => {
           "nome": poloAtivo.nomeParticipante,
           "polo": poloAtivo.poloParticipante,
           "tipo": poloAtivo.tipoParticipante
-        },
-        {
-          "cpf": "83204377334",
-          "nome": "GETULIO GOMES MACIEL",
-          "polo": "PASSIVO",
-          "tipo": "REU",
-          "advogados": []
-        },
-        {
-          "cnpj": "18519123000107",
-          "nome": "ALCENOR LOPES MARTINS ME - ME",
-          "polo": "PASSIVO",
-          "tipo": "REU",
-          "advogados": []
         },
         {
           "cpf": "62270427300",
