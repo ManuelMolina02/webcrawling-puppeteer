@@ -21,14 +21,14 @@ e o tipo de dados em cada um.
 
 ### Ferramentas Utilizadas
 - Desenvolvimento:
-nodeJS
-express
-puppeteer
-request
+  - nodeJS
+  - express
+  - puppeteer
+  - request
 
 - Testes:
-jest
-supertest
+  - jest
+  - supertest
 
 ### Como baixar o projeto?
 
