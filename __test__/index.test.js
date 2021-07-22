@@ -2,11 +2,13 @@ const { expect } = require('@jest/globals')
 const request = require('supertest')
 const app = require('../routes')
 
-
 //Descrição do teste
 describe('Testing route connection', () => {
+    //Iniciar teste
     it('Connection root', async () => {
+        //Fazer requisição na rota '/exemplo'
         const root = await request(app).get('/')
+        //validar se status da rota é 200
         expect(root.statusCode).toEqual(200)
     });
 
