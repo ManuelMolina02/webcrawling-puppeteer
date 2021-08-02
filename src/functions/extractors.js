@@ -49,7 +49,6 @@ async function primaryDataExtraction(digitoUnificado, foroNumeroUnificado) {
         .toLocaleUpperCase()
     )
 
-
     const cabecalhoDados = {
       numeroProcesso: listaDadosPrincipais[0].replace(/\D/g, ""),
       situacaoProcesso: listaDadosPrincipais[1],
@@ -71,7 +70,7 @@ async function primaryDataExtraction(digitoUnificado, foroNumeroUnificado) {
   await browser.close();
 
   //Retornar dados no console  
-  console.log({ processDataList })
+  //console.log( processDataList )
 
   //Retornar lista fora da função
   return processDataList
