@@ -1,12 +1,11 @@
 const express = require('express');
-const { primaryDataProcess } = require('./models/form-data-one')
-const { dataProcessTwo } = require('./functions/extractors')
+const { dataProcessTjAlagoas } = require('./useCases/extractors/tjAlagoasExtractor')
+const { dataProcessTjPiaui } = require('./useCases/extractors/tjPiauiExtractor')
 
 const app = express();
 
 //Rota -->> root
-app.get('/', async (request, response) => {
-
+app.get('/', (request, response) => {
   //Retornar rotas acessíveis
   return response.json([{
     "Fonte de dados 1 >": "Tribunal de Justiça do Estado de Alagoas - TJAL",
@@ -22,19 +21,16 @@ app.get('/', async (request, response) => {
 //Rota 1 -->> Tribunal de Justiça do Estado de Alagoas - TJAL
 app.get('/arqTJAL', async (request, response) => {
   //Aguarde o armazenamento dos dados no objeto 
-  const processOneFont = await primaryDataProcess
+  const processTjAlagoas = await dataProcessTjAlagoas
   //Retorne os dados em json
-  return response.json({ processOneFont });
+  return response.json({ processTjAlagoas });
 });
-
 
 
 //Rota 2 -->> Tribunal de Justiça do Estado de Piauí - TJPI
 app.get('/arqTJPI', async (request, response) => {
-    //Aguarde o armazenamento dos dados no objeto 
-    const processTwoFont = await dataProcessTwo
-    //Retorne os dados em json
-    return response.json({ processTwoFont });
+  const processTjPiaui = await dataProcessTjPiaui
+  return response.json({ processTjPiaui });
 });
 
 
