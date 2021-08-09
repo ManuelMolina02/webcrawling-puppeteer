@@ -4,10 +4,10 @@
 
 //Importando extensões
 const puppeteer = require('puppeteer');
-  //(puppeteer): realiza prints, extração de imagens, pdfs e dados de uma página web
+//(puppeteer): realiza prints, extração de imagens, pdfs e dados de uma página web
 
 const { extractDataHeaderTjAlagoas } = require('../Functions/tjAlagoasFunctions')
-  //função extratora
+//função extratora
 
 
 //Recebendo variáveis de pesquisa
@@ -63,13 +63,13 @@ async function extractProcessTjAlagoas(digitoUnificado, foroNumeroUnificado) {
   //Passo 7: Função evaluate
   const processDataTjAlagoas = await page.evaluate(extractDataHeaderTjAlagoas)
 
-  //Passo 8: Fechar navegador
+  //Passo 8: Fechar navegador 
   await browser.close();
 
   //Passo 9: Retornar dados 
 
   //No console  
-    //console.log(processDataList)
+  //console.log(processDataList)
 
   //Retornar variável fora da função
   return processDataTjAlagoas
